@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Care Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+        }
+        #login-page, #home-page {
+            text-align: center;
+            padding: 20px;
+        }
+        #login-page {
+            background-color: teal;
+            height: 100vh;
+            color: white;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+        }
+        nav {
+            background-color: #ffcccb;
+            padding: 15px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            font-size: 18px;
+            color: black;
+            font-weight: bold;
+        }
+        section {
+            display: none;
+            padding: 20px;
+        }
+        #home { display: block; }
+        .container {
+            width: 80%;
+            margin: auto;
+            text-align: center;
+        }
+        .pet-image {
+            width: 200px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Login Page -->
+    <div id="login-page">
+        <h1>Pet Care Assistant</h1>
+        <form onsubmit="return loginUser()">
+            <input type="text" id="username" placeholder="Enter Name" required>
+            <input type="password" id="password" placeholder="Enter Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <!-- Home Page -->
+    <div id="home-page" style="display:none;">
+        <header>
+            <h1>Welcome to Pet Care Assistant</h1>
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="showSection('home')">Home</a></li>
+                    <li><a href="#" onclick="showSection('services')">Services</a></li>
+                    <li><a href="#" onclick="showSection('shopping')">Shopping</a></li>
+                    <li><a href="#" onclick="showSection('membership')">Membership</a></li>
+                    <li><a href="#" onclick="showSection('about')">About Us</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Home Section -->
+        <section id="home">
+            <div class="container">
+                <h2>Welcome to Pet Care Assistant</h2>
+                <p>Your one-stop solution for pet grooming, vet appointments, shopping, and more.</p>
+                <img src="https://source.unsplash.com/200x150/?dog,pet" class="pet-image">
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services">
+            <div class="container">
+                <h2>Our Services</h2>
+                <h3>Book Appointments</h3>
+                <label><input type="checkbox"> Grooming</label>
+                <label><input type="checkbox"> Vet Check-up</label>
+                <label><input type="checkbox"> Bathing</label>
+                <label><input type="checkbox"> Walking</label>
+                <label><input type="checkbox"> Nail Trimming</label>
+                <input type="datetime-local" id="appointment-time">
+                <button onclick="bookAppointment()">Book Now</button>
+            </div>
+        </section>
+
+        <!-- Shopping Section -->
+        <section id="shopping">
+            <div class="container">
+                <h2>Shop for Your Pet</h2>
+                <p>Find pet accessories from trusted websites:</p>
+                <a href="https://www.amazon.com/s?k=dog+accessories" target="_blank">Amazon - Pet Accessories</a><br>
+                <a href="https://www.flipkart.com/search?q=dog+accessories" target="_blank">Flipkart - Pet Accessories</a>
+            </div>
+        </section>
+
+        <!-- Membership Section -->
+        <section id="membership">
+            <div class="container">
+                <h2>Membership Plans</h2>
+                <p>Get exclusive pet care benefits:</p>
+                <ul>
+                    <li>Yearly Plan: $60</li>
+                    <li>Monthly Plan: $8</li>
+                </ul>
+                <button>Subscribe Now</button>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about">
+            <div class="container">
+                <h2>About Us</h2>
+                <p>Email: petcare@support.com</p>
+                <p>Contact: +1234567890</p>
+                <h3>Client Reviews</h3>
+                <img src="https://source.unsplash.com/150x150/?puppy,pet" class="pet-image">
+                <p>"Great service! My dog loves it!" - Sarah</p>
+                <img src="https://source.unsplash.com/150x150/?cat,pet" class="pet-image">
+                <p>"Very professional and caring." - John</p>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        function loginUser() {
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            if (username && password) {
+                alert("Login Successful!");
+                document.getElementById("login-page").style.display = "none";
+                document.getElementById("home-page").style.display = "block";
+                return false;
+            } else {
+                alert("Please enter valid credentials.");
+                return false;
+            }
+        }
+
+        function showSection(section) {
+            document.querySelectorAll("section").forEach(sec => sec.style.display = "none");
+            document.getElementById(section).style.display = "block";
+        }
+
+        function bookAppointment() {
+            let time = document.getElementById("appointment-time").value;
+            if (time) {
+                alert("Appointment booked for " + time);
+            } else {
+                alert("Please select a date and time.");
+            }
+        }
+    </script>
+
+</body>
+</html>
